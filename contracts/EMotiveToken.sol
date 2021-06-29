@@ -6,10 +6,10 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 
 contract EMotiveToken is ERC20, AccessControl {
-    string constant NAME = "EMotiveToken";
-    string constant SYMBOL = "EMOT";
-    uint256 constant FINAL_SUPPLY = 1000 * 10**6 * 10**18;
-    uint256 constant INITIAL_SUPPLY = 500 * 10**6 * 10**18;
+    string public constant NAME = "EMotiveToken";
+    string public constant SYMBOL = "EMOT";
+    uint256 public constant FINAL_SUPPLY = 1000 * 10**6 * 10**18;
+    uint256 public constant INITIAL_SUPPLY = 500 * 10**6 * 10**18;
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
     modifier onlyAdmin() {
@@ -31,12 +31,12 @@ contract EMotiveToken is ERC20, AccessControl {
         _setupRole(MINTER_ROLE, msg.sender);
     }
 
-    function mint(address _to, uint256 _amount) public onlyMinter {
+    function mint(address to, uint256 amount) external onlyMinter {
         require(
-            totalSupply() + _amount * 10**decimals() < FINAL_SUPPLY,
+            totalSupply() + amount * 10**decimals() < FINAL_SUPPLY,
             "Cannot mint more than Final Supply."
         );
-        _mint(_to, _amount * 10**decimals());
+        _mint(to, amount * 10**decimals());
     }
 
     function isAdmin(address account) public view virtual returns (bool) {
