@@ -39,27 +39,27 @@ contract EMotiveToken is ERC20, AccessControl {
         _mint(to, amount * 10**decimals());
     }
 
-    function isAdmin(address account) public view virtual returns (bool) {
+    function isAdmin(address account) external view virtual returns (bool) {
         return hasRole(DEFAULT_ADMIN_ROLE, account);
     }
 
-    function isMinter(address account) public view virtual returns (bool) {
+    function isMinter(address account) external view virtual returns (bool) {
         return hasRole(MINTER_ROLE, account);
     }
 
-    function addAdminRole(address account) public virtual onlyAdmin {
+    function addAdminRole(address account) external virtual onlyAdmin {
         grantRole(DEFAULT_ADMIN_ROLE, account);
     }
 
-    function addMinterRole(address account) public virtual onlyAdmin {
+    function addMinterRole(address account) external virtual onlyAdmin {
         grantRole(MINTER_ROLE, account);
     }
 
-    function removeAdminRole(address account) public virtual onlyAdmin {
+    function removeAdminRole(address account) external virtual onlyAdmin {
         revokeRole(DEFAULT_ADMIN_ROLE, account);
     }
 
-    function removeMinterRole(address account) public virtual onlyAdmin {
+    function removeMinterRole(address account) external virtual onlyAdmin {
         revokeRole(MINTER_ROLE, account);
     }
 }
