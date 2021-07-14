@@ -33,9 +33,8 @@ describe('EMotiveToken', () => {
 		})
 
 		it('will revert if someone else tries to add Minter role', async () => {
-			await expect(
-				emotive.connect(addr1).addMinterRole(addr1.address)
-			).to.be.revertedWith('Restricted to admins.')
+			await expect(emotive.connect(addr1).addMinterRole(addr1.address)).to
+				.be.reverted
 		})
 
 		it('will allow admin to add Admin role', async () => {
@@ -44,9 +43,8 @@ describe('EMotiveToken', () => {
 		})
 
 		it('will revert if someone else tries to add Admin role', async () => {
-			await expect(
-				emotive.connect(addr1).addAdminRole(addr1.address)
-			).to.be.revertedWith('Restricted to admins.')
+			await expect(emotive.connect(addr1).addAdminRole(addr1.address)).to
+				.be.reverted
 		})
 
 		it('will allow admin to remove Minter role', async () => {
@@ -55,9 +53,8 @@ describe('EMotiveToken', () => {
 		})
 
 		it('will revert if someone else tries to remove Minter role', async () => {
-			await expect(
-				emotive.connect(addr1).removeMinterRole(addr1.address)
-			).to.be.revertedWith('Restricted to admins.')
+			await expect(emotive.connect(addr1).removeMinterRole(addr1.address))
+				.to.be.reverted
 		})
 
 		it('will allow admin to remove Admin role', async () => {
@@ -66,9 +63,8 @@ describe('EMotiveToken', () => {
 		})
 
 		it('will revert if someone else tries to remove Admin role', async () => {
-			await expect(
-				emotive.connect(addr1).removeAdminRole(addr1.address)
-			).to.be.revertedWith('Restricted to admins.')
+			await expect(emotive.connect(addr1).removeAdminRole(addr1.address))
+				.to.be.reverted
 		})
 	})
 
